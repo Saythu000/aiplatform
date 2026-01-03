@@ -1,6 +1,7 @@
 from .rdbms import RDBMSConnector
 from .elasticsearch import ESConnector
 from .opensearch import OpenSearchConnector
+from .arxiv import ArxivConnector
 
 class ConnectorFactory:
     """
@@ -20,3 +21,7 @@ class ConnectorFactory:
             return ESConnector(config=config)
         elif connector_type == "opensearch":
             return OpenSearchConnector(config=config)
+        elif connector_type == "arxiv":
+            return ArxivConnector(config=config)
+        else:
+            raise ValueError(f"Unknown connector type: {connector_type}")

@@ -1,0 +1,8 @@
+# ArXiv Extraction Configuration
+arxiv:
+  extraction:
+    source_name: "arxiv_api"
+    category: "cs.AI"  # Computer Science - Artificial Intelligence
+    max_results: 20
+    sort_by: "submittedDate"
+    sort_order: "descending"

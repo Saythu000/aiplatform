@@ -1,0 +1,4 @@
+arxiv:
+  transformation:
+    index_name: "arxiv_papers"
+    # Add any ArXiv-specific transformation rules here

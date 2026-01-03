@@ -1,0 +1,22 @@
+elasticsearch:
+  load:
+    index_name: "arxiv_papers"
+    settings:
+      index:
+        number_of_shards: 1
+        number_of_replicas: 0
+      analysis:
+        analyzer:
+          arxiv_analyzer:
+            type: custom
+            tokenizer: standard
+            filter: ["lowercase", "stop", "snowball"]
+    mappings:
+      dynamic: true
+      properties:
+        arxiv_id: {type: keyword}
+        title: {type: text, analyzer: arxiv_analyzer}
+        authors: {type: keyword}
+        abstract: {type: text, analyzer: arxiv_analyzer}
+        published_date: {type: date}
+        pdf_url: {type: keyword}

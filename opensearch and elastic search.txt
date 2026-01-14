@@ -1,0 +1,150 @@
+### **📁 Files Created:**
+
+#### **New Files:**
+1. /home/surya/aiplatform/src/custom/search/__init__.py
+   • Search module initialization
+
+2. /home/surya/aiplatform/src/custom/search/schemas/__init__.py
+   • Search schemas module initialization
+
+3. /home/surya/aiplatform/src/custom/search/schemas/search_schemas.py
+   • Pydantic models for search requests/responses
+   • SearchRequest, SearchResponse, SearchHit, IndexRequest, HealthStatus
+
+4. /home/surya/aiplatform/src/custom/search/opensearch_service.py
+   • Complete OpenSearch service implementation
+   • Methods: health_check(), create_index(), index_paper(), search_papers(), vector_search()
+
+#### **Previously Modified Files:**
+5. /home/surya/aiplatform/src/custom/connectors/opensearch.py (Step A)
+   • OpenSearch connector implementation
+
+6. /home/surya/aiplatform/src/custom/connectors/factory.py (Step A)
+   • Added OpenSearchConnector import and registration
+
+7. /home/surya/aiplatform/src/custom/credentials/opensearch.py (Step A)
+   • OpenSearch credentials provider
+
+8. /home/surya/aiplatform/src/custom/credentials/localsettings/opensearchconfig.py (Step A)
+   • OpenSearch configuration class
+
+9. /home/surya/aiplatform/src/custom/credentials/factory.py (Step A)
+   • Added OpenSearchCredentials registration
+
+10. /home/surya/aiplatform/requirements.txt (Step B)
+    • Added opensearch-py[async]
+
+11. /home/surya/aiplatform/setup.py (Step B)
+    • Added opensearch-py[async] to install_requires
+
+### **🔧 Usage Example:**
+python
+# Initialize service
+from src.custom.connectors.factory import ConnectorFactory
+from src.custom.credentials.factory import CredentialFactory
+from src.custom.search.opensearch_service import OpenSearchService
+
+# Get credentials and connector
+provider = CredentialFactory.get_provider(mode="opensearchlocal")
+config = provider.get_credentials()
+connector = ConnectorFactory.get_connector("opensearch", config)
+
+# Create service
+service = OpenSearchService(connector)
+
+# Use service
+await service.create_index()
+await service.index_paper(paper_data)
+results = await service.search_papers(SearchRequest(query="deep learning"))
+
+ ## **📁 Step C - Complete File Locations:**
+
+### **🆕 New Files Created in Step C:**
+
+1. /home/surya/aiplatform/src/custom/search/__init__.py
+   • Search module initialization file
+
+2. /home/surya/aiplatform/src/custom/search/schemas/__init__.py
+   • Search schemas module initialization file
+
+3. /home/surya/aiplatform/src/custom/search/schemas/search_schemas.py
+   • Pydantic models: SearchRequest, SearchResponse, SearchHit, IndexRequest, HealthStatus
+
+4. /home/surya/aiplatform/src/custom/search/opensearch_service.py
+   • Main OpenSearch service with all search operations
+   • Methods: health_check(), create_index(), index_paper(), search_papers(), vector_search(), index_papers_bulk(), delete_index()
+
+### **📂 Directory Structure Created:**
+/home/surya/aiplatform/src/custom/search/
+├── __init__.py
+├── opensearch_service.py
+└── schemas/
+    ├── __init__.py
+    └── search_schemas.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ## **✅ Elasticsearch Implementation Complete**
+
+### **📁 File Locations Created/Modified:**
+
+#### **🆕 New Files Created:**
+
+1. /home/surya/aiplatform/src/custom/connectors/elasticsearch.py
+   • Elasticsearch connector following OpenSearch pattern
+
+2. /home/surya/aiplatform/src/custom/credentials/localsettings/elasticsearchconfig.py
+   • Elasticsearch configuration class with ELASTICSEARCH__ env prefix
+
+3. /home/surya/aiplatform/src/custom/credentials/elasticsearch.py
+   • Elasticsearch credentials provider
+
+4. /home/surya/aiplatform/src/custom/search/elasticsearch_service.py
+   • Complete Elasticsearch service with all search operations
+
+#### **📝 Modified Files:**
+
+5. /home/surya/aiplatform/src/custom/connectors/factory.py
+   • Added ElasticsearchConnector import and registration
+
+6. /home/surya/aiplatform/src/custom/credentials/factory.py
+   • Added ElasticsearchCredentials import and "elasticsearchlocal" mode
+
+7. /home/surya/aiplatform/requirements.txt
+   • Added elasticsearch[async]
+
+8. /home/surya/aiplatform/setup.py
+   • Added elasticsearch[async] to install_requires
+
+### **🔧 Usage Example:**
+python
+# Get Elasticsearch credentials and connector
+provider = CredentialFactory.get_provider(mode="elasticsearchlocal")
+config = provider.get_credentials()
+connector = ConnectorFactory.get_connector("elasticsearch", config)
+
+# Create service
+service = ElasticsearchService(connector)
+
+# Use service
+await service.create_index()
+await service.search_papers(SearchRequest(query="machine learning"))
+
+
+### **🌍 Environment Variables:**
+Add to .env:
+ELASTICSEARCH__HOST=localhost
+ELASTICSEARCH__PORT=9200
+ELASTICSEARCH__USERNAME=elastic
+ELASTICSEARCH__PASSWORD=password

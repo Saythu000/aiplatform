@@ -1,0 +1,8 @@
+apache-airflow>=2.5.0
+docling
+pypdfium2
+httpx
+pydantic>=2.0.0
+pendulum
+opensearch-py[async]
+elasticsearch[async]

@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+
+# Pytest cache
+.pytest_cache/
+
+# Local data storage (don’t commit big files)
+data/
+
+datas/
+
+.env/
+
+.env

@@ -1,0 +1,6 @@
+apache-airflow
+docling
+pypdfium2
+httpx
+pydantic
+pendulum

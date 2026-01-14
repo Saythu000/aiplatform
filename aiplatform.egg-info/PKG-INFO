@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: aiplatform
+Version: 0.1.0
+Requires-Python: >=3.8
+Requires-Dist: apache-airflow
+Requires-Dist: docling
+Requires-Dist: pypdfium2
+Requires-Dist: httpx
+Requires-Dist: pydantic
+Requires-Dist: pendulum
+Dynamic: requires-dist
+Dynamic: requires-python
